@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yonyong.dao.ValidateDao">
+
+    <!--判断改手机号是否已经在数据库中-->
+    <select id="queryYZM" resultType="Validate" >
+    SELECT *
+    FROM validate
+    WHERE tel=#{tel}
+    </select>
+
+    <!--如果用户手机号不存在，将手机号、验证码，及获取验证码生成的时间存入数据库-->
+    <insert id="insertYZM">
+         INSERT INTO validate(tel,yzm,time) VALUES (#{tel},#{yzm},#{sendValidateTime})
+    </insert>
+
+    <!--如果用户手机号已经存在，将手机号、验证码，及获取验证码生成的时间更新存入数据库-->
+    <update id="updateYZM">
+        update validate SET yzm=#{yzm},time=#{sendValidateTime}
+        where tel=#{tel}
+    </update>
+
+</mapper>

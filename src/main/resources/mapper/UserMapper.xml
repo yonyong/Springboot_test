@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yonyong.dao.UserDao">
+
+    <!--查询usr表账号和密码,用于验证登陆-->
+    <select id="queryUser" resultType="User" parameterType="User">
+    SELECT tel,password
+    FROM user
+    WHERE tel=#{user.tel} and password=#{user.password}
+    </select>
+
+    <!--查询表中是否已经存在该用户-->
+    <select id="registerQueryUser" resultType="User" parameterType="String">
+    SELECT tel,password
+    FROM user
+    WHERE tel=#{user.tel}
+    </select>
+
+    <!--注册用户-->
+    <insert id="registerUser">
+         INSERT INTO user VALUES (#{tel},#{password})
+    </insert>
+</mapper>

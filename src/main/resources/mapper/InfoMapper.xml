@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yonyong.dao.InfoDao">
+    <resultMap type="Info" id="infoMap" >
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="date" column="date"/>
+    </resultMap>
+    <!--查询info表所有信息，用于消息展示-->
+    <select id="queryInfo" resultMap="infoMap" >
+    SELECT *
+    FROM info
+    </select>
+
+    <!--查询一个消息，将该消息内容展示出到一个页面用于编辑-->
+    <select id="queryInfoById" resultType="Info" >
+    SELECT *
+    FROM info
+    WHERE id=#{temp_id}
+    </select>
+
+    <!--编辑消息-->
+    <update id="editInfo">
+     update info SET title=#{title},date=#{date},content=#{content}
+     where id=#{id}
+    </update>
+
+    <!--删除消息-->
+    <delete id="deleteInfo" parameterType="int">
+
+    delete from info where id=#{temp_id}
+
+    </delete>
+
+    <!--添加消息-->
+    <insert id="addInfo">
+         INSERT INTO info(title,content,date) VALUES (#{title},#{content},#{date})
+    </insert>
+</mapper>

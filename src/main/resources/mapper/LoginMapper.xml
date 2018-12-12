@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yonyong.dao.LoginDao">
+
+    <!--查询login表中是否已经有过该用户错误登陆记录-->
+    <select id="queryUser" resultType="Login" >
+    SELECT *
+    FROM login
+    WHERE tel=#{tel}
+    </select>
+
+    <!--如果该用户没有错误登陆记录，表中没有他的数据，则向表中添加-->
+    <insert id="insertUser">
+         INSERT INTO login(tel,time,count) VALUES (#{tel},#{sendValidateTime},#{count})
+    </insert>
+
+    <!--更新用户的错误登陆时间-->
+    <update id="updateUser">
+        update login SET time=#{sendValidateTime},count=#{count}
+        where tel=#{tel}
+    </update>
+
+</mapper>

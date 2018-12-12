@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>消息</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        <div class="table-responsive" align="center">
+            <br/>  <br/>  <br/>
+            <h3 align="center">消息列表 </h3>
+            <table class="table" align="center">
+                <tr th:each="temp:${list}">
+                    <th th:text="${temp.title}"></th>
+                    <th th:text="${temp.date}"></th>
+                    <td><a href="/tologin">编辑</a></td>
+                    <td> <a href="/tologin">删除</a><td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" class="btn btn-primary btn-lg btn-block" value="添加"
+               onclick="location.href='/tologin'">
+
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group">
+            当前账户：游客<span th:text="${session.number}"></span>
+        </div>
+        <div class="form-group">
+            <p class="help-block"><a href="/tologin">点我下线</a></p>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
